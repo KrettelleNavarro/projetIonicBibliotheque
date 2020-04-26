@@ -1,17 +1,16 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 3
+      Livres appréciés
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <form>
+    <input [(ngModel)]="mess.message" name="message" placeholder="message" />
+    <input type="button" (click)="saveMess()" value="Enregistrer" />
+</form>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <app-explore-container name="Livres appréciés"></app-explore-container>
 </ion-content>

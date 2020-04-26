@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { LivreService } from '../services/livre.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab2',
@@ -7,6 +9,34 @@ import { Component } from '@angular/core';
 })
 export class Tab2Page {
 
-  constructor() {}
+    livre = {
+      auteur : null,
+      titre:null,
+      genre:null,
+      domaine:null,
+      pages:null
+    }
+  twEvent: any;
+  route: any;
 
+  constructor(public livreService: LivreService,
+    private router:Router
+    ) {}
+
+      logForm() {
+      this.livreService.addNewLivreToList(this.livre);
+      this.livre = {
+      auteur : null,
+      titre:null,
+      genre:null,
+      domaine:null,
+      pages:null};
+      this.router.navigate(['/'])
+    }
+
+    // savelivre(): void {
+    //   this.livreService.savelivre(this.savelivre).subscribe(savelivre => {
+    //     this.twEvent.emit(savelivre);
+    //   });
+    // }
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LivreService } from '../services/livre.service';
 
 @Component({
   selector: 'app-tab1',
@@ -6,7 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
+  livres = [];
 
-  constructor() {}
+  constructor(
+    public livreService: LivreService
+  ) {}
+  ngOnInit() {
+    this.livreService.loadSaved().then(livres => this.livres = livres);
+  }
 
 }
