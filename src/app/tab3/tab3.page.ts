@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { LivreService } from '../services/livre.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-tab3',
@@ -11,25 +12,44 @@ import { Router } from '@angular/router';
 
 export class Tab3Page  {
 
-  mess= {
-    id: null,
-    message: '',
-    user_id: 1,
-    created_at: null,
-    updated_at: null,
-    deleted_at:null
-  };
+//   mess:Mess= {
+//     id: null,
+//     message: '',
+//     user_id: 1,
+//     created_at: null,
+//     updated_at: null,
+//     deleted_at:null
+//   };
+//   _router: any;
 
-  constructor(
-    public livreService: LivreService,
-    private router:Router
-  ) { }
+//   constructor(
+//     public livreService: LivreService,
+//     private route:ActivatedRoute,
+//     private router:Router,
+//     private location: Location
+//   ) { }
 
-  ngOnInit(): void {
-  }
+//   ngOnInit(): void {
+//     const messId = +this.route.snapshot.paramMap.get('messId');
 
-  saveMess(): void {
+//     this.livreService.getMess(messId)
+//       .subscribe(mess => this.mess = mess);
+//   }
+
+//   goBack(): void {
+//     this.location.back();
+//   }
+
+//   update(): void {
+//     this.livreService.updateLivre(this.mess)
+//       .subscribe((mess) => {
+//         this._router.navigate( ['mess-list']);
+//       });
+//   }
+
+
+//   saveMess(): void {
     
-  }
+//   }
 
 }

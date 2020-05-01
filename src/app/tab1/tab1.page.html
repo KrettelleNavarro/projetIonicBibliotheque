@@ -8,22 +8,30 @@
 
 <ion-content [fullscreen]="true">
   <ion-grid>
-    <ion-row>
-      <ion-col >Auteur </ion-col>
-      <ion-col>Titre du livre</ion-col>
-      <ion-col size="2">Genre</ion-col>
-      <ion-col size="2"> Domaine Public</ion-col>
-      <ion-col size="1"> Nbre de pages</ion-col>
-
-    </ion-row>
+    <ion-card *ngFor="let livre of livres">
+      <ion-row>
+        <ion-card-content>
+          <ion-col >Auteur </ion-col> {{livre.auteur}}
+          <br>
+          <ion-col>Titre du livre</ion-col> {{livre.titre}}
+          <br>
+          <ion-col size="2">Genre</ion-col>  {{livre.genre}}
+          <br>
+          <ion-col size="2"> Domaine Public</ion-col> {{livre.domaine}}
+          <br>
+          <ion-col size="1"> Nbre de pages</ion-col>{{livre.pages}}
+          <br>
+        </ion-card-content>
+      </ion-row> 
+      <div>
+        <a href="../tabs/tab3">Commentaires</a>
+      </div>
+      </ion-card>
+    
   </ion-grid>
 </ion-content>
 
 <ion-content>
-    <ion-card *ngFor="let livre of livres">
-        <ion-card-content>
-            {{livre.auteur}} {{livre.titre}} {{livre.genre}} {{livre.domaine}} {{livre.pages}}
-        </ion-card-content>
-    </ion-card>
+   
 </ion-content>
 

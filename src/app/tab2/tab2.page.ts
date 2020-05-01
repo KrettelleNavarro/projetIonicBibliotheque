@@ -16,8 +16,7 @@ export class Tab2Page {
       domaine:null,
       pages:null
     }
-  twEvent: any;
-  route: any;
+  
 
   constructor(public livreService: LivreService,
     private router:Router
@@ -34,9 +33,4 @@ export class Tab2Page {
       this.router.navigate(['/'])
     }
 
-    // savelivre(): void {
-    //   this.livreService.savelivre(this.savelivre).subscribe(savelivre => {
-    //     this.twEvent.emit(savelivre);
-    //   });
-    // }
-}
+  }
