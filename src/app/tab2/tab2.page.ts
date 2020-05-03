@@ -10,11 +10,13 @@ import { Router } from '@angular/router';
 export class Tab2Page {
 
     livre = {
-      auteur : null,
-      titre:null,
-      genre:null,
-      domaine:null,
-      pages:null
+      id:null,
+      auteur: null,
+      titre: null,
+      genre: null,
+      domaine: null,
+      pages: null,
+      commentaires: [],
     }
   
 
@@ -24,12 +26,17 @@ export class Tab2Page {
 
       logForm() {
       this.livreService.addNewLivreToList(this.livre);
+
       this.livre = {
-      auteur : null,
-      titre:null,
-      genre:null,
-      domaine:null,
-      pages:null};
+        id : null,
+        auteur : null,
+        titre:null,
+        genre:null,
+        domaine:null,
+        pages:null,
+        commentaires: [],
+      };
+      
       this.router.navigate(['/'])
     }
 

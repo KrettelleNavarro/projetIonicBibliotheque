@@ -3,6 +3,7 @@
     <ion-title>
       Ajouter un livre
     </ion-title>
+    
   </ion-toolbar>
 </ion-header>
 
@@ -10,7 +11,7 @@
     <form (ngSubmit)="logForm()">
       <ion-input type="text" placeholder = "Auteur: " [(ngModel)]="livre.auteur" name="livreAuteur"></ion-input>
       <ion-input type="text" placeholder = "Titre: " [(ngModel)]="livre.titre" name="livreTitre"></ion-input>
-      <ion-input type="text" placeholder = "Genre: " [(ngModel)]="livre.genre" name="llivreGenre"></ion-input>
+      <ion-input type="text" placeholder = "Genre: " [(ngModel)]="livre.genre" name="livreGenre"></ion-input>
       <ion-input type="text" placeholder = "Domaine: " [(ngModel)]="livre.domaine" name="livreDomaine"></ion-input>
       <ion-input type="text" placeholder = "Nbre de Pages: " [(ngModel)]="livre.pages" name="livrePages"></ion-input>
 

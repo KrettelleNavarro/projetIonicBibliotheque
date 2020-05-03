@@ -1,24 +1,44 @@
 
-<ion-content>
-  page 3
-</ion-content>
 
-
-<!--{# <ion-header [translucent]="true">
+<ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Livres appréciés
-    </ion-title>
+      Nom du Livre :  {{livre.titre}}
+    </ion-title> 
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <form>
-    <input [(ngModel)]="mess.message" name="message" placeholder="message" />
+    <input [(ngModel)]="mess.commentaire" name="message" placeholder="message" />
 
-    <input type="button" (click)="saveMess()" value="Enregistrer" />
-</form>
+    <!--<input type="button" (click)="saveMess()" value="Enregistrer" />-->
+  </form>
 
-  <app-explore-container name="Livres appréciés"></app-explore-container>
-</ion-content> #} -->
+    <ion-grid>
+      <ion-card *ngFor="let commentaire of livre.commentaires">
+        <ion-row>
+          <ion-card-content>
+            <ion-col >Commentateur </ion-col> {{commentaire.nomDuCommentateur}}
+            <br>
+            <ion-col>Date</ion-col> {{commentaire.date}}
+            <br>
+            <ion-col size="2">Commentaires</ion-col>  {{commentaire.commentaire}}
+            <br>
+          </ion-card-content>
+        </ion-row> 
+        </ion-card>
+    </ion-grid>
+    <div>
+      <ion-button (click)= "commentaireLivreById()">
+        Sauvegarder
+      </ion-button>
+    </div>
+    <div>
+      <ion-button (click)= "goBack()">
+        Retour à la page 1
+      </ion-button>
+    </div>
+
+</ion-content> 
 

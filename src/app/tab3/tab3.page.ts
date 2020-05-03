@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { LivreService } from '../services/livre.service';
+import { LivreService, Livre, Commentaire } from '../services/livre.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-tab3',
@@ -12,33 +13,44 @@ import { Location } from '@angular/common';
 
 export class Tab3Page  {
 
-//   mess:Mess= {
-//     id: null,
-//     message: '',
-//     user_id: 1,
-//     created_at: null,
-//     updated_at: null,
-//     deleted_at:null
-//   };
-//   _router: any;
+  mess: Commentaire = {
+    nomDuCommentateur: "",
+    date: new Date,
+    commentaire: "",
+  };
+  _router: any;
 
-//   constructor(
-//     public livreService: LivreService,
-//     private route:ActivatedRoute,
-//     private router:Router,
-//     private location: Location
-//   ) { }
+  livre: Livre;
 
-//   ngOnInit(): void {
-//     const messId = +this.route.snapshot.paramMap.get('messId');
+  
 
-//     this.livreService.getMess(messId)
-//       .subscribe(mess => this.mess = mess);
-//   }
+  constructor(
+    public livreService: LivreService,
+    private route:ActivatedRoute,
+    private router:Router,
+    private location: Location
+  ) 
+  {
+    this.route.queryParams.subscribe(params => {
+      if (params && params.special) {
+        this.livre = JSON.parse(params.special);
+      }
+    });
+  }
 
-//   goBack(): void {
-//     this.location.back();
-//   }
+  ngOnInit(): void {
+    
+  }
+
+  goBack(): void {
+    this.location.back();
+  }
+
+  commentaireLivreById(): void{
+    this.livreService.addNewCommentaireToList(this.livre.id,this.mess)
+  } 
+
+
 
 //   update(): void {
 //     this.livreService.updateLivre(this.mess)

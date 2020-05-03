@@ -5,12 +5,20 @@ import { Observable } from 'rxjs';
 
 const { Camera, Filesystem, Storage } = Plugins;
 
-interface Livre {
+
+export interface Livre {
+  id: number;
   titre: string;
   auteur: string;
   domainePublic:string;
   genre: string;
   taille:0;
+  commentaires: Commentaire[];
+}
+export interface Commentaire {
+  nomDuCommentateur: string;
+  date: Date;
+  commentaire: string;
 }
 
 @Injectable({
@@ -19,51 +27,48 @@ interface Livre {
 export class LivreService {
   
   public livres: Livre[] = [];
+  public commentaire: Commentaire[] = [];
   private LIVRES_STORAGE: string = "livres";
+  public cptLivre: number;
   updateLivre: any;
   
 
-  constructor(
-    //private http: HttpClient
-  ) { }
+  constructor(  ) { }
 
-  /** Version Node */
-  private urlNode = 'http://127.0.0.1:3000';
+    public async addNewLivreToList(livre) {
+      this.cptLivre = Number((await Storage.get({ key: "cpt" })).value) || 0;
+      livre.id = this.cptLivre++;
+      this.livres.push(livre);
 
-  // getMess(): Observable<Mess[]> {
-  //   return this.http.get<Mess[]>(this.urlNode+"/mess");
-  // }
+      Storage.set({
+        key: this.LIVRES_STORAGE,
+        value: JSON.stringify(this.livres)
+        
+      });
+      // for simulation bdd id auto increment
+      Storage.set({
+        key: "cpt",
+        value: this.cptLivre.toString()
+      });
+      // -----------------------------------
+      return this.livres;
+    }
+    
 
-  // getMess(messId): Observable<Mess> {
-  //   return this.http.get<Mess>(this.urlNode+"/mess/"+messId);
-  // }
+    public async addNewCommentaireToList(livre_id, commentaire) {
+      this.livres.find(livre=>livre.id===livre_id).commentaires.push(commentaire);
 
-  // saveMess(mess: Mess): Observable<Mess> {
-  //   return this.http.post<Mess>(this.urlNode+"/mess", mess);
-  // }
+      Storage.set({
+        key: this.LIVRES_STORAGE,
+        value: JSON.stringify(this.livres)
+      });
+    }
 
-  // deleteMess(mess: Mess): Observable<Mess> {
-  //   return this.http.delete<Mess>(this.urlNode+"/mess/" + mess.id);
-  // }
+    public async loadSaved() {
+      const livres = await Storage.get({ key: this.LIVRES_STORAGE });
+      this.livres = JSON.parse(livres.value) || [];
 
-  // updateMess(mess: Mess): Observable<Mess> {
-  //   return this.http.patch<Mess>(this.urlNode+"/tw/" + mess.id, mess);
-  //}
-
-  public async addNewLivreToList(livre) {
-    this.livres.push(livre);
-
-    Storage.set({
-      key: this.LIVRES_STORAGE,
-      value: JSON.stringify(this.livres)
-    });
-  }
-  public async loadSaved() {
-    const livres = await Storage.get({ key: this.LIVRES_STORAGE });
-    this.livres = JSON.parse(livres.value) || [];
-
-    return this.livres;
-  }
-
- 
+      return this.livres;
+    }
 }
+    
